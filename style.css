@@ -1,0 +1,45 @@
+.calculator {
+	margin: auto;
+	width: 400px;
+	height: 600px;
+}
+#screen, .operations, .calculations, .numbers{
+	display: inline-block;
+	float: right;
+}
+
+#screen {
+	width: 	100%;
+	height: 20%;
+}
+.operations {
+	width: 	100%;
+	height: 16%;
+}
+.numbers {
+	width: 75%;
+	height: 64%;
+}
+.calculations {
+	width: 25%;
+	height: 64%;
+}
+.three, .four, .twelve {
+	float: left;
+	display: block;
+	text-align: center;
+	font-family: Georgia;
+	font-size: 20px;
+}
+.three {
+	height: 100%;
+	width: 33.3333%;
+}
+.four {
+	width: 100%;
+	height: 25%;
+}
+.twelve {
+	width: 33.3333%;
+	height: 25%;
+}
