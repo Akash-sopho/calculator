@@ -2,6 +2,7 @@ function init() {
 	var operations = document.querySelector(".operations");
 	var calculations = document.querySelector(".calculations");
 	var numbers = document.querySelector(".numbers");
+	screen.innerText = input;
 
 	createDiv(operations, 3, "three");
 	createDiv(calculations, 4, "four");
@@ -24,21 +25,48 @@ function init() {
 		four[i].innerText = calculationpad[i];
 	}
 	for (i in twelve) {
-		twelve[i].addEventListener('click',changebg);
+		twelve[i].addEventListener('click',enterNum);
 		twelve[i].innerText = numpad[i];
 	}
 }
-
 function createDiv (parentClass, num, divClass) {
 	for (var i = 0;i < num;i++) {
 		var newDiv = document.createElement('div');
-		newDiv.id = i;
+		newDiv.id = i + 1;
 		newDiv.className = divClass;
 		parentClass.appendChild(newDiv);
 	}
 }
+var input = "0";
+var screen = document.querySelector('#screen');
 function changebg(event) {
-
 	event.target.style.backgroundColor = 'gray';
+	screen.innerText = input;
+}
+function enterNum(e) {
+	var id = e.target.id;
+	if (input.includes(".") == true && (id == "10" || id == "11" || id == "12")) {
+		if (id == "10")
+			return;
+		else if (id == "11")
+			input = input + "0";
+		else if (id == "12")
+			input = input + "00";
+	}
+	else if (id == "10"){
+		input = input + ".";
+		console.log(input);
+	}
+	else if (id == "11"){
+		input = parseFloat(input + "0");
+	}
+	else if (id == "12"){
+		input = parseFloat(input + "00");
+	}
+	else{ 
+		input = parseFloat(input + id);
+	}
+	input = input.toString();
+	screen.innerText = input;
 }
 init();

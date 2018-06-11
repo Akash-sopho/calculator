@@ -1,7 +1,12 @@
+div {
+	outline: 1px solid black;
+}
 .calculator {
 	margin: auto;
 	width: 400px;
 	height: 600px;
+	border-style: solid;
+	border-width: 5px;
 }
 #screen, .operations, .calculations, .numbers{
 	display: inline-block;
@@ -24,12 +29,14 @@
 	width: 25%;
 	height: 64%;
 }
-.three, .four, .twelve {
+.three, .four, .twelve, #screen {
 	float: left;
 	display: block;
 	text-align: center;
+	padding-top: 30px;
 	font-family: Georgia;
 	font-size: 20px;
+	box-sizing: border-box;
 }
 .three {
 	height: 100%;
