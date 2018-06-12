@@ -12,16 +12,16 @@ function init() {
 	var four = Array.from(document.querySelectorAll(".four"));
 	var twelve = Array.from(document.querySelectorAll(".twelve"));
 
-	var numpad = ["1","2","3","4","5","6","7","8","9",".","0","00"];
+	var numpad = ["1","2","3","4","5","6","7","8","9",".","0","-/+"];
 	var calculationpad = ["+","-","*","/"];
-	var operationpad = ["CLEAR","BACK","="];
+	var operationpad = ["C","Backspace","="];
 
 	for (i in three) {
-		three[i].addEventListener('click',changebg);
+		three[i].addEventListener('click',changeNum);
 		three[i].innerText = operationpad[i];
 	}
 	for (i in four) {
-		four[i].addEventListener('click',changebg);
+		four[i].addEventListener('click',calculate);
 		four[i].innerText = calculationpad[i];
 	}
 	for (i in twelve) {
@@ -37,11 +37,54 @@ function createDiv (parentClass, num, divClass) {
 		parentClass.appendChild(newDiv);
 	}
 }
+var values = [0,0];
+var operator = "0";
 var input = "0";
 var screen = document.querySelector('#screen');
-function changebg(event) {
-	event.target.style.backgroundColor = 'gray';
+function changeNum(e) {
+	id  = e.target.id;
+	if (id == "1") {
+		values = [0,0];
+		input = "0";
+		operator = "0";
+	}
+	else if (id == "2") {
+		if (input.length == 1)
+			input = "0";
+		else
+			input = input.slice(0,input.length - 1);
+	}
+	else if (id == "3") {
+		var res = 0;
+		values[1] = parseFloat(input);
+		switch (operator) {
+			case "0":
+			return;
+			case "1":
+			res = values[0] + values[1];
+			break;
+			case "2":
+			res = values[0] - values[1];
+			break;
+			case "3":
+			res = values[0] * values[1];
+			break;
+			case "4":
+			res = values[0] / values[1];
+			break;
+		}
+		values[0] = res;
+		values[1] = 0;
+		operator = "0";
+		input = res.toString();
+	}
 	screen.innerText = input;
+	console.log(values);
+}
+function calculate(e) {
+	operator = e.target.id;
+	values[0] = parseFloat(input);
+	input = "0";
 }
 function enterNum(e) {
 	var id = e.target.id;
@@ -55,13 +98,15 @@ function enterNum(e) {
 	}
 	else if (id == "10"){
 		input = input + ".";
-		console.log(input);
 	}
 	else if (id == "11"){
 		input = parseFloat(input + "0");
 	}
 	else if (id == "12"){
-		input = parseFloat(input + "00");
+		if (input.charAt(0) == "-")
+			input.slice(1,input.length);
+		else
+			input = "-" + input;
 	}
 	else{ 
 		input = parseFloat(input + id);
