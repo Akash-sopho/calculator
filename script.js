@@ -14,7 +14,9 @@ function init() {
 
 	var numpad = ["1","2","3","4","5","6","7","8","9",".","0","-/+"];
 	var calculationpad = ["+","-","*","/"];
-	var operationpad = ["C","Backspace","="];
+	var operationpad = ["C","<-","="];
+
+	three[1].classList.add("bg");
 
 	for (i in three) {
 		three[i].addEventListener('click',changeNum);
@@ -79,7 +81,6 @@ function changeNum(e) {
 		input = res.toString();
 	}
 	screen.innerText = input;
-	console.log(values);
 }
 function calculate(e) {
 	operator = e.target.id;
