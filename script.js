@@ -11,6 +11,14 @@ function init() {
 	var three = Array.from(document.querySelectorAll(".three"));
 	var four = Array.from(document.querySelectorAll(".four"));
 	var twelve = Array.from(document.querySelectorAll(".twelve"));
+	var divs = three.concat(four,twelve);
+
+	for (i in divs) divs[i].addEventListener('mouseover',function(e) {
+		e.target.classList.add('mouse');
+		setTimeout(function() {
+			e.target.classList.remove('mouse');
+		},300);
+	});
 
 	var numpad = ["1","2","3","4","5","6","7","8","9",".","0","-/+"];
 	var calculationpad = ["+","-","*","/"];
@@ -61,6 +69,10 @@ function changeNum(e) {
 		values[1] = parseFloat(input);
 		switch (operator) {
 			case "0":
+			e.target.classList.add('playing');
+			setTimeout(function() {
+				e.target.classList.remove('playing');
+			},300);
 			return;
 			case "1":
 			res = values[0] + values[1];
@@ -81,17 +93,30 @@ function changeNum(e) {
 		input = res.toString();
 	}
 	screen.innerText = input;
+	e.target.classList.add('playing');
+	setTimeout(function() {
+		e.target.classList.remove('playing');
+	},300);
 }
 function calculate(e) {
 	operator = e.target.id;
 	values[0] = parseFloat(input);
 	input = "0";
+	e.target.classList.add('playing');
+	setTimeout(function() {
+		e.target.classList.remove('playing');
+	},300);
 }
 function enterNum(e) {
 	var id = e.target.id;
 	if (input.includes(".") == true && (id == "10" || id == "11" || id == "12")) {
-		if (id == "10")
+		if (id == "10"){
+			e.target.classList.add('playing');
+			setTimeout(function() {
+				e.target.classList.remove('playing');
+			},300);
 			return;
+		}
 		else if (id == "11")
 			input = input + "0";
 		else if (id == "12")
@@ -114,5 +139,9 @@ function enterNum(e) {
 	}
 	input = input.toString();
 	screen.innerText = input;
+	e.target.classList.add('playing');
+	setTimeout(function() {
+		e.target.classList.remove('playing');
+	},300);
 }
 init();

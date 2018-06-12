@@ -1,6 +1,16 @@
 div {
 	outline: 1px solid black;
 }
+body {
+	background-color: aliceblue;
+}
+h1 {
+	margin: auto;
+	text-align: center;
+	font-family: Georgia;
+	font-size: 50px;
+	padding: 20px 0px;
+}
 .calculator {
 	margin: auto;
 	width: 400px;
@@ -41,17 +51,28 @@ div {
 .three {
 	height: 100%;
 	width: 33.3333%;
+	background-color: lightblue;
 }
 .four {
 	width: 100%;
 	height: 25%;
+	background-color: darkkhaki;
 }
 .twelve {
 	width: 33.3333%;
 	height: 25%;
+	background-color: lightgreen;
 }
 #screen {
 	text-align: right;
 	font-size: 35px;
 	padding-right: 20px;
+}
+.playing {
+	background-color: gray;
+	transition: all 0.5s ease;
+}
+.mouse {
+	background-color: chocolate;
+	transition: all 0.5s ease;
 }
